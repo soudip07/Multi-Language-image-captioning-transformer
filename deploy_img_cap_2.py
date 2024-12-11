@@ -109,17 +109,34 @@ def generate_caption(K, img_path, index_to_word, word_to_index):
     caption = " ".join(predicted_sentence + ['.'])
     return caption
 
-# Function to translate the generated caption to Bengali using mtranslate
-def translate_to_beng(caption):
+def translate_caption(caption, lang_code):
+    """Translate the caption to the desired language using mtranslate"""
+    lang_map = {
+        'eng': 'en',
+        'beng': 'bn',
+        'hin': 'hi',
+        'frn': 'fr',
+        'grm': 'de'
+    }
+    if lang_code in lang_map:
+        target_lang = lang_map[lang_code]
+        translated_caption = translate(caption, target_lang, 'en')
+        return translated_caption
+    else:
+        return caption  # Return English caption if unsupported language
 
-    # Translate the caption to Bengali using mtranslate
-    translated_caption = translate(caption, 'bn', 'en')
 
-    # Return the translated caption
-    return translated_caption
-
-def caption_this_image(img_path):
-    cap = generate_caption(3, img_path, index_to_word, word_to_index)
-    cap = translate_to_beng(cap)
-    return cap
-
+def caption_this_image(img_path, selected_language):
+    """Generate 5 captions for an image and translate them to the preferred language"""
+    captions = []
+    
+    # Generate 5 different captions
+    for _ in range(5):
+        cap = generate_caption(3, img_path, index_to_word, word_to_index)
+        captions.append(cap)
+    
+    # Translate each of the 5 captions to the preferred language using translate_caption
+    if selected_language != 'eng':  # Only translate if the selected language is not English
+        captions = [translate_caption(cap, selected_language) for cap in captions]
+    
+    return captions

@@ -39,15 +39,10 @@ h1 {
     }
 }
 
-.resize-image {
-    object-fit: cover; 
-    width: 100%;
-    height: 100%;
-}
 
 /* Styling for the fixed-size card */
 .card {
-    width: 700px !important;  /* Increased width with !important */
+    width: 650px !important;  /* Increased width with !important */
     height: 600px !important; /* Increased height with !important */
     background-color: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -58,23 +53,30 @@ h1 {
 /* Image container styling */
 .image-container {
     width: 100%;
-    height: 70%;  /* Adjust the image height as needed */
+    height: 60% !important;
     overflow: hidden;
 }
 
-/* Ensure image covers the container */
+/* Ensure image covers the container and has rounded corners */
 .image-container img {
+    display: flex;
+    justify-content: center;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    border-radius: 20px;  /* Rounded corners for the image */
 }
+
 
 /* Caption container styling */
 .caption-container {
     padding: 16px;
     flex-grow: 1;
     overflow-y: auto;  /* Allows scrolling if the caption is too long */
+    margin-top: 30px; /* Increased gap between image and caption */
 }
+
+
 
 .caption-container p {
     font-size: 16px;

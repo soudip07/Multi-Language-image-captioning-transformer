@@ -23,7 +23,6 @@
                 <input id="file" name="userfile" type="file" />
             </div>     
 
-            
             <!-- Language dropdown -->
             <div class="langs-dropdown">
                 <label for="langs" class="langs-label">Preferred Language: </label>
@@ -48,13 +47,18 @@
     <div class="flex justify-center items-center my-10">
         <div class="max-w-[900px] mx-auto">
             <div class="flex flex-col bg-white shadow-md bg-clip-border rounded-xl card">
-                <div class="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-[320px]">
-                    <img src="{{your_result['image']}}" alt="your-image" class="object-cover w-full h-full" />
+                <div class=" image-container relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-[200px]">
+                    <img src="{{your_result['image']}}" alt="your-image" class=" " />
                 </div>
                 <div class="p-6 flex-1 caption-container">
-                    <p class="block font-sans font-bold text-sm antialiased font-normal leading-normal text-lg text-black-800 opacity-75 break-words">
-                        Generated caption: <i>{{ your_result['caption'] }}</i>
-                    </p>
+                    <h3 class="font-sans font-bold text-md text-center mb-4">Generated Captions</h3>
+
+                    {% for caption in your_result['captions'] %}
+                        <p class="block font-sans font-bold text-sm antialiased font-normal leading-normal text-lg text-black-800 opacity-100 break-words">
+                            Caption {{ loop.index }}: <i>{{ caption }}</i>
+                        </p>
+                    
+                    {% endfor %}
                 </div>
             </div>
         </div>

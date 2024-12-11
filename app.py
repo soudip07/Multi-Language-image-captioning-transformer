@@ -19,14 +19,14 @@ def marks():
 		f = request.files['userfile']
 		path = './static/{}'.format(f.filename)
 		f.save(path)
-		caption = deploy_img_cap_2.caption_this_image(path)
-
+		selected_lang = request.form.get('langs', 'eng')
+		captions = deploy_img_cap_2.caption_this_image(path, selected_lang)
 		result_dic = {
 			'image' : path,
-			'caption' : caption
+			'captions' : captions
 		}	
+		return render_template("index.html", your_result=result_dic)
 
-	return render_template("index.html", your_result=result_dic)
 
 if __name__ == '__main__':
 	# app.debug = True
