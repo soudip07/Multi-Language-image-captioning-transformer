@@ -1,0 +1,167 @@
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2));
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 300% !important;
+    font-weight: bold !important;
+    color: transparent;
+    background: linear-gradient(to right, #6e6e6e 0%, white 10%, #6e6e6e 20%);
+    background-size: 200% 100%;
+    background-position: 0%;
+    -webkit-background-clip: text;
+    animation: shine 2.5s infinite linear;
+    animation-fill-mode: forwards;
+    text-align: center;
+    white-space: nowrap;
+    margin-top: 20px;
+}
+
+@keyframes shine {
+    0% {
+        background-position: 200%;
+    }
+    50% {
+        background-position: 100%;
+    }
+    100% {
+        background-position: 0%;
+    }
+}
+
+.resize-image {
+    object-fit: cover; 
+    width: 100%;
+    height: 100%;
+}
+
+/* Styling for the fixed-size card */
+.card {
+    width: 700px !important;  /* Increased width with !important */
+    height: 600px !important; /* Increased height with !important */
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Image container styling */
+.image-container {
+    width: 100%;
+    height: 70%;  /* Adjust the image height as needed */
+    overflow: hidden;
+}
+
+/* Ensure image covers the container */
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Caption container styling */
+.caption-container {
+    padding: 16px;
+    flex-grow: 1;
+    overflow-y: auto;  /* Allows scrolling if the caption is too long */
+}
+
+.caption-container p {
+    font-size: 16px;
+    color: #333;
+    word-wrap: break-word;
+}
+
+
+/* File input styles */
+input[type=file] {
+    display: none;
+}
+
+label[for=file] {
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: .5em;
+    justify-items: center;
+    align-content: center;
+    color: #E91E63;
+    border: .2em solid #E91E63;
+    background: #fff;  /* Set the background to white */
+    padding: .85em 1.5em;
+    border-radius: 2em;
+    transition: 1s;
+}
+
+label[for=file]:hover, label[for=file]:focus, label[for=file]:active {
+    background: #E91E63;
+    color: #fff;
+}
+
+ion-icon {
+    font-size: 1.2em;
+}
+
+/*upload and dropdown flex*/
+.my-flex {
+    /*background-color: aqua;*/
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1rem;
+}
+
+.langs-label {
+    font-size: large;
+    font-weight: bold;
+    color: aliceblue;
+}
+
+#langs-dropdown {
+    border: #E91E63;
+    border-radius: 8px;  /* Adjust border-radius as needed */
+    border: 2px solid #E91E63; /* Optional: change border color */
+    padding: 0.5em;
+}
+
+/* Center the submit button below the form inputs */
+.submit-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px; /* Add spacing between form and button */
+}
+
+/* Submit button styling */
+.submit-btn {
+    width: 170px;
+    height: 55px;
+    border: none;
+    outline: none;
+    background: #080dff;
+    color: #fff;
+    font-size: 22px;
+    border-radius: 40px;
+    text-align: center;
+    box-shadow: 0 6px 20px -5px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Press animation (when button is clicked) */
+.submit-btn:active {
+    background: #3b2f99; /* Darker shade when pressed */
+    transform: scale(0.95); /* Shrink the button slightly */
+    box-shadow: 0 3px 15px -5px rgba(0, 0, 0, 0.4); /* Decrease the shadow for a pressed look */
+}
+

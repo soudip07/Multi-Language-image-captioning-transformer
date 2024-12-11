@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Captioning</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.min.css" rel="stylesheet">
+</head>
+<body>
+    <h1 class="gradient-text my-4 text-center">Image Captioning</h1>
+
+    <form action="/" method="POST" enctype="multipart/form-data">
+        <div class="my-flex">
+            <!-- File input field -->
+            <div class="file">
+                <label for="file">
+                    Upload 
+                    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+                    <ion-icon name="cloud-upload-outline"></ion-icon>
+                </label>
+                <input id="file" name="userfile" type="file" />
+            </div>     
+
+            
+            <!-- Language dropdown -->
+            <div class="langs-dropdown">
+                <label for="langs" class="langs-label">Preferred Language: </label>
+                <select name="langs" id="langs-dropdown" class="p-2 mt-2 border rounded-lg">
+                    <option value="eng">English</option>
+                    <option value="beng">Bengali</option>
+                    <option value="hin">Hindi</option>
+                    <option value="frn">French</option>
+                    <option value="grm">German</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Centered submit button -->
+        <div class="submit-container flex justify-center my-4">
+            <button type="submit" class="submit-btn" id="submitBtn" value="Submit">Submit</button>
+        </div>
+    </form>
+
+    <!-- Image Captioning Result -->
+    <div class="flex justify-center items-center my-10">
+        <div class="max-w-[900px] mx-auto">
+            <div class="flex flex-col bg-white shadow-md bg-clip-border rounded-xl card">
+                <div class="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-[320px]">
+                    <img src="{{your_result['image']}}" alt="your-image" class="object-cover w-full h-full" />
+                </div>
+                <div class="p-6 flex-1 caption-container">
+                    <p class="block font-sans font-bold text-sm antialiased font-normal leading-normal text-lg text-black-800 opacity-75 break-words">
+                        Generated caption: <i>{{ your_result['caption'] }}</i>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
