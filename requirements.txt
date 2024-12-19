@@ -5,3 +5,4 @@ matplotlib==3.8.0
 mtranslate==1.8
 gunicorn==21.2.0
 werkzeug
+gdown
