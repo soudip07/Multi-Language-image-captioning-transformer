@@ -1,7 +1,7 @@
-Flask==2.2.3
+Flask
 torch==2.0.1
 torchvision==0.15.2
 matplotlib==3.8.0
 mtranslate==1.8
 gunicorn==21.2.0
-werkzeug==2.0.3
+werkzeug
