@@ -1,5 +1,3 @@
-#deploy_img_cap_2.py
-
 import torch
 import pickle
 import torchvision
@@ -7,23 +5,39 @@ from PIL import Image
 import random
 import math
 import matplotlib.pyplot as plt
+import gdown
+import os
 from model import ImageCaptionModel, PositionalEncoding
 from mtranslate import translate
 
 max_seq_len = 33
 vocab_size = 8360
-k=3
+k = 3
 
+# Google Drive URLs for downloading the model and vocab
+MODEL_URL = 'https://drive.google.com/uc?id=1h6WABgQIrGAEagHFrZCW46W0vqm5nnp2'  # BestModel
+VOCAB_URL = 'https://drive.google.com/uc?id=1aBvi3ekvrfSXMCt9WiSmgWVSAXBhUhqw'  # vocab.pkl
 
+# Function to download from Google Drive if not already downloaded
+def download_from_drive(url, output_path):
+    if not os.path.exists(output_path):
+        print(f"Downloading {output_path}...")
+        gdown.download(url, output_path, quiet=False)
+    else:
+        print(f"{output_path} already exists.")
 
 # Load the model and vocab (only once)
 def load_model_and_vocab():
     global model, index_to_word, word_to_index, resnet18
-    
+
+    # Download the model and vocab if they don't exist
+    download_from_drive(MODEL_URL, './BestModel_main')
+    download_from_drive(VOCAB_URL, './vocab_main.pkl')
+
     # Load the pre-trained model
     model = torch.load('./BestModel_main', map_location=torch.device('cpu'))
 
-    #Load pretrained resnet18 model
+    # Load pretrained resnet18 model
     resnet18 = torchvision.models.resnet18(weights=torchvision.models.ResNet18_Weights.DEFAULT)
     resnet18.eval()
 
@@ -35,8 +49,6 @@ def load_model_and_vocab():
 
 # Call this function at the top level to load everything once
 load_model_and_vocab()
-
-
 
 """**Extract features from image using resnet18**"""
 def extract_image_features(image, model):
@@ -69,7 +81,6 @@ def generate_caption(K, img_path, index_to_word, word_to_index):
     # plt.imshow(image)
     # plt.axis("off")
     # plt.show()
-
 
     img_embed = extract_image_features(image, resnet18)
 
