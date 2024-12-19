@@ -30,12 +30,16 @@ def download_from_drive(url, output_path):
 def load_model_and_vocab():
     global model, index_to_word, word_to_index, resnet18
 
+    # Import the model class before loading the model
+    from model import ImageCaptionModel, PositionalEncoding
+
     # Download the model and vocab if they don't exist
     download_from_drive(MODEL_URL, './BestModel_main')
     download_from_drive(VOCAB_URL, './vocab_main.pkl')
 
     # Load the pre-trained model
     model = torch.load('./BestModel_main', map_location=torch.device('cpu'))
+
 
     # Load pretrained resnet18 model
     resnet18 = torchvision.models.resnet18(weights=torchvision.models.ResNet18_Weights.DEFAULT)
