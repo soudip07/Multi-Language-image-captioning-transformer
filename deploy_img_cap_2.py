@@ -21,14 +21,14 @@ def load_model_and_vocab():
     global model, index_to_word, word_to_index, resnet18
     
     # Load the pre-trained model
-    model = torch.load('./BestModel', map_location=torch.device('cpu'))
+    model = torch.load('./BestModel_main', map_location=torch.device('cpu'))
 
     #Load pretrained resnet18 model
     resnet18 = torchvision.models.resnet18(weights=torchvision.models.ResNet18_Weights.DEFAULT)
     resnet18.eval()
 
     # Load vocab
-    with open('./vocab.pkl', 'rb') as f:
+    with open('./vocab_main.pkl', 'rb') as f:
         vocab = pickle.load(f)
     index_to_word, word_to_index = vocab['index_to_word'], vocab['word_to_index']
     print(f"Vocabulary loaded. Vocab size: {len(index_to_word)}")
