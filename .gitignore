@@ -1,0 +1,7 @@
+# Ignore bestModel file
+BestModel_main
+BestModel
+
+# Ignore vocab.pkl file
+vocab_main.pkl
+vocab
